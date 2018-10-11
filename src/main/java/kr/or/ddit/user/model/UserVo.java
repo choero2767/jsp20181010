@@ -14,7 +14,18 @@ public class UserVo {
 	private String email;
 	private String tel;
 	private String profile;
+	private int rnum;
 	
+	
+	
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
 	public UserVo() {
 		super();
 	}

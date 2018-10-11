@@ -1,4 +1,4 @@
-package kr.or.ddit.utill.model.pageVo;
+package kr.or.ddit.util.model.pageVo;
 
 public class PageVo {
 	private int page;
