@@ -32,18 +32,13 @@
 			<%@ include file="/common/left.jsp" %>
 			
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<form class="form-horizontal" role="form">
+				<form action="/userUpdateForm" method="get" class="form-horizontal" role="form">
 				
 					<% UserVo user = (UserVo)request.getAttribute("userVo");
 					%>http://localhost:8081/profile/brown.png
-				
-					<div class="form-group">
-						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userId" name="userId"
-								placeholder="사용자 아이디">
-						</div>
-					</div>
+					
+					<!-- 아이디값 보내기** -->
+					<input type="hidden" id="userId" name="userId" value=<%=user.getUserId() %>>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
@@ -109,7 +104,8 @@
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">사용자 등록</button>
+							<button type="submit" class="btn btn-default" >수 정</button>
+							
 						</div>
 					</div>
 				</form>

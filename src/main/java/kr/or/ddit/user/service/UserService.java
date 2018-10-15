@@ -63,6 +63,21 @@ public class UserService implements UserServiceInf{
 		
 		return resultMap;
 	}
+
+	@Override
+	public int insertUser(UserVo userVo) {
+		return dao.insertUser(userVo);
+	}
+
+	@Override
+	public int deleteUser(String userId) {
+		return dao.deleteUser(userId);
+	}
+
+	@Override
+	public int updateUser(UserVo userVo) {
+		return dao.updateUser(userVo);
+	}
 	
 	
 	

@@ -8,7 +8,7 @@
 	</select>
 
 	<select id="selectUser" parameterType="String" resultType="userVo">
-		select * from jspuser where userId = #{userId}
+		select userId, name, birth, pass, addr1 as add1, addr2 as add2, zipcd, email, tel, profile from jspuser where userId = #{userId}
 	</select>
 
 	<select id="selectUserByVo" parameterType="String" resultType="userVo">
@@ -29,6 +29,33 @@
 	<select id = "getUserCnt" resultType="int">
 		select count(*) from jspuser
 	</select>
+	
+	<!-- 사용자 등록 -->
+	<insert id="insertUser" parameterType="userVo">
+		insert into jspuser
+		(userId, name, birth, pass, addr1, addr2, zipcd, email, tel, profile)
+		values(#{userId}, #{name}, #{birth}, #{pass}, #{add1}, #{add2}, #{zipcd}, #{email}, #{tel}, #{profile})
+	</insert>
+	
+	<!-- 사용자 삭제 -->
+	<delete id="deleteUser" parameterType="string">
+		delete from jspuser
+		where userId = #{userId}
+	</delete>
+	
+	<!-- 사용자 정보 수정 -->
+	<update id="updateUser" parameterType="userVo">
+		update jspuser set name = #{name},
+		pass = #{pass},
+		addr1 = #{add1},
+		addr2 = #{add2},
+		zipcd = #{zipcd},
+		email = #{email},
+		tel = #{tel},
+		birth = #{birth},
+		profile = #{profile}
+		where userId = #{userId}
+	</update>
 </mapper>
 
 

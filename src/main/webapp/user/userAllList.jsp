@@ -49,7 +49,7 @@
 				<% for(int i = 0; i < userList.size(); i++){ %>
 				<tr>
 					<td><%=i %></td>
-					<td><%=userList.get(i).getUserId() %></td>
+					<td><%=userList.get(i).getUserId() %></td> 
 					<td><%=userList.get(i).getName() %></td>
 					<td><%=userList.get(i).getBirth() %></td>
 				</tr>

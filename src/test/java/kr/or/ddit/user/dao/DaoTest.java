@@ -2,6 +2,10 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +19,12 @@ import org.junit.Test;
 public class DaoTest {
 	
 	private UserDaoInf userDao;
-
+	private final String TEST_USER_ID = "testuser1";
+	
 	@Before
 	public void setup(){
 		userDao = new UserDao();
+		userDao.deleteUser("TEST_USER_ID");
 	}
 	
 	// 테스트 메소드 명명 규칙(회사마다 다름)
@@ -97,6 +103,83 @@ public class DaoTest {
 		
 		/***Then***/
 		assertEquals(105, totalUserCnt);
+		
+	}
+	
+	@Test
+	public void getInsertUser(){
+		/***Given***/
+		// userVo 준비
+		UserVo userVo = new UserVo();
+		userVo.setUserId("testuser1");
+		userVo.setName("testName");
+		userVo.setPass("testPass");
+		userVo.setAdd1("testAddr1");
+		userVo.setAdd2("testAddr2");
+		userVo.setZipcd("testZipCd");
+		String str = "2018-10-12";
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date;
+		try {
+			date = format.parse(str);
+			userVo.setBirth(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		userVo.setEmail("testUser@gmail.com");
+		userVo.setTel("042-222-0421");
+		/***When***/
+		// userDao.insertUser()
+		int insertCnt = userDao.insertUser(userVo);
+		
+		
+		/***Then***/
+		// 입력건수 비교
+		assertEquals(1, insertCnt);
+		
+	}
+	
+	@Test
+	public void getDeleteUser(){
+		/***Given***/
+		String userId = "testuser1";
+
+		/***When***/
+		int deleteCnt = userDao.deleteUser(userId);
+		/***Then***/
+		assertEquals(1, deleteCnt);
+	}
+	
+	@Test
+	public void getUpdateUser(){
+		/***Given***/
+		// userVo 준비
+		UserVo userVo = new UserVo();
+		userVo.setUserId("testuser1");
+		userVo.setName("testName");
+		userVo.setPass("testPass");
+		userVo.setAdd1("testAddr1");
+		userVo.setAdd2("testAddr2");
+		userVo.setZipcd("testZipCd");
+		String str = "2018-10-12";
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date;
+		try {
+			date = format.parse(str);
+			userVo.setBirth(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+				
+		userVo.setEmail("testUser@gmail.com");
+		userVo.setTel("042-222-0421");
+
+		/***When***/
+		int updateCnt = userDao.insertUser(userVo);
+
+		/***Then***/
+		assertEquals(1, updateCnt);
 		
 	}
 
