@@ -13,7 +13,40 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
+    <%@include file="/common/basicLib.jsp" %>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// remember 쿠키값이 Y이면 
+			// remember-me 체크박스 체크
+			if(getCookie("remember")=="Y"){
+				document.getElementById("remember").checked = true;
+			// userId input value를 userId 쿠키값으로 설정
+				$("#remember").attr("checked", true);
+// 				$("#remember").prop("checked", true);
+				
+				$("#userId").val(getCookie("userId"));
+			}
+		});
+		
+	
+		function getCookie(cookieName){
+			var cookies = document.cookie.split("; ");
+			
+			var cookieValue = "";
+			
+			for(var i = 0; i < cookies.length; i++){
+				var str = cookies[i];
+				if(str.startsWith(cookieName + "="))
+					cookieValue = str.substring((cookieName + "=").length);
+			}
+			return cookieValue;
+		}
+			console.log(getCookie("remember"));
+			console.log(getCookie("userId"));
+	</script>
+	
 
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
@@ -36,11 +69,18 @@
       <form class="form-signin" action="/dditLogin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" name="user_id" class="form-control" placeholder="User Id" required autofocus>
+        <input id="userId" type="text" name="user_id" class="form-control" placeholder="User Id" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="user_pw" class="form-control" placeholder="Password" required>
         
+         <div class="checkbox">
+          <label>
+            <input id="remember" type="checkbox" value="remember-me" name="remember-me"> Remember me
+          </label>
+        </div>
+        
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        
       </form>
 
     </div> <!-- /container -->

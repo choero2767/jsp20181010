@@ -176,10 +176,11 @@ public class DaoTest {
 		userVo.setTel("042-222-0421");
 
 		/***When***/
-		int updateCnt = userDao.insertUser(userVo);
+//		int updateCnt = userDao.updateUser(userVo);
 
 		/***Then***/
-		assertEquals(1, updateCnt);
+//		assertEquals(1, updateCnt);
+		System.out.println(userVo);
 		
 	}
 

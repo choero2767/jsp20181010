@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,32 @@ public class LoginServlet extends HttpServlet {
 		String userId = req.getParameter("user_id");
 		String userPw = req.getParameter("user_pw");
 		
+		// remember-me 파라미터 받아서 sysout으로 출력
+		String checkBox = req.getParameter("remember-me");
+		System.out.println("rememberMe : " + checkBox);
+		
+		// rememberMe == null : 아이디 기억 사용안함
+		if(checkBox == null){
+			Cookie[] cookies = req.getCookies();
+			for(Cookie cookie : cookies){
+				// cookie 이름이 remember, userId 일 경우 maxage를 
+				// -1 설정하여 쿠키를 유효하지 않도록 설정
+				System.out.println(cookie.getName());
+				if(cookie.getName().equals("remember") || cookie.getName().equals("userId")){
+					cookie.setMaxAge(0);
+					resp.addCookie(cookie);
+				}
+			}
+			
+		}else{
+			// response 객체에 쿠키를 저장
+			Cookie cookie = new Cookie("remember", "Y");
+			Cookie userIdCookie = new Cookie("userId", userId);
+			
+			
+			resp.addCookie(cookie);
+			resp.addCookie(userIdCookie);
+		}
 
 		// 2 --> db대신 상수로 대체 --> db로 대체 
 		// UserService 객체를 생성
