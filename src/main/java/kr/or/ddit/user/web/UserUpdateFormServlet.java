@@ -64,7 +64,7 @@ public class UserUpdateFormServlet extends HttpServlet {
 		String contentDisposition =  profilePart.getHeader("Content-disposition");
 		
 		String fileName = StringUtil.getFileNameFromHeader(contentDisposition);
-		
+		System.out.println("fileName : " + fileName);
 
 		String[] splits = contentDisposition.split("; ");
 		
@@ -75,7 +75,7 @@ public class UserUpdateFormServlet extends HttpServlet {
 		String path = getServletContext().getRealPath("/profile");
 
 		// profile 신규 입력 값
-		String profile = "/profile/"+fileName;
+		String profile = "profile/"+fileName;
 		
 		profilePart.write(path + File.separator + fileName);
 		
