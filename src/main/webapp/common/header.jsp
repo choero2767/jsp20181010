@@ -1,8 +1,12 @@
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% UserVo userVo = (UserVo)session.getAttribute("userVo"); %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script>
+	var test = "${userVo.name}";
+</script>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -13,9 +17,10 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">JSP/SPRING 
-				<% if(userVo != null){%>
-				   		<%=userVo.getName() +"["+userVo.getAlias() +"] 님 안녕하세요."%>
-				<% }%></a>
+					<c:if test="${S_USER.name != null}">
+					${S_USER.name } 님 안녕하세요 
+					</c:if>
+			</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">

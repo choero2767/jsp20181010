@@ -2,7 +2,8 @@
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,7 +108,7 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
-							<img src="<%=userUpdate.getProfile() %>">
+							<img src="${userVo.profile }">
 							<input type="file" name="profile">
 						</div>
 					</div>
@@ -118,7 +119,7 @@ $(document).ready(function(){
 						<div class="col-sm-10">
 						
 							<input type="text" class="form-control" id="userId" name="userId"
-								placeholder="사용자 아이디" value=<%=userUpdate.getUserId() %>>
+								placeholder="사용자 아이디" value="${userVo.userId }">
 						</div>
 					</div>
 
@@ -126,7 +127,7 @@ $(document).ready(function(){
 						<label for="userNm" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-10">
 							<input type="password" class="form-control" id="pass" name="pass"
-								placeholder="패스워드" value=<%=userUpdate.getPass() %>>
+								placeholder="패스워드" value="${userVo.pass }">
 						</div>
 					</div>
 
@@ -134,49 +135,49 @@ $(document).ready(function(){
 						<label for="userNm" class="col-sm-2 control-label">이름</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="name" name="name"
-								placeholder="이름" value=<%=userUpdate.getName() %>>
+								placeholder="이름" value="${userVo.name }">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="add1" name="add1" readonly
-								placeholder="주소" value=<%=userUpdate.getAdd1() %>> <button id="addrSearchBtn" type="button" class="btn btn-default">주소검색</button>
+								placeholder="주소" value="${userVo.add1 }"> <button id="addrSearchBtn" type="button" class="btn btn-default">주소검색</button>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">상세주소</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="add2" name="add2"
-								placeholder="상세주소" value=<%=userUpdate.getAdd2() %>>
+								placeholder="상세주소" value="${userVo.add2 }">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">우편번호</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="zipcd" name="zipcd" readonly
-								placeholder="우편번호" value=<%=userUpdate.getZipcd() %>>
+								placeholder="우편번호" value="${userVo.zipcd }">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">생년월일</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="birth" name="birth"
-								placeholder="생일" value="<%=userUpdate.getBirth() %>">
+								placeholder="생일" value="${userVo.birth }">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">이메일</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="email" name="email"
-								placeholder="이메일" value=<%=userUpdate.getEmail() %>>
+								placeholder="이메일" value="${userVo.email }">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">연락처</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="tel" name="tel"
-								placeholder="연락처" value=<%=userUpdate.getTel() %>>
+								placeholder="연락처" value="${userVo.tel }">
 						</div>
 					</div>
 

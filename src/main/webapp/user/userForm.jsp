@@ -30,15 +30,6 @@
 
 $(document).ready(function(){
 	// 개발 과정에서 사용한 기본 값 설정
-	$("#userId").val();
-	$("#pass").val("pass1234");
-	$("#name").val("testUserID");
-	$("#add1").val("대전 중구 중앙로 76");
-	$("#add2").val("영민빌딩 2층 대덕인재개발원");
-   	$("#zipcd").val("34940");
-   	$("#birth").val("2018-08-08");
-   	$("#email").val("choero2767@gmail.com");
-   	$("#tel").val("0422228202");
 	
 	// 생일 input datepicker 적용
 	$("#birth").datepicker({

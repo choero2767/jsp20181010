@@ -2,7 +2,9 @@
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,15 +97,18 @@
 				</tr>
 				
 				<!-- pageList loop 이용하여 출력 -->
-				<% List<UserVo> pageList = (List<UserVo>) request.getAttribute("pageList"); %>
-				<% for(int i = 0; i < pageList.size(); i++){ %>
-				<tr onClick = "alertId('<%=pageList.get(i).getUserId()%>')">
-					<td><%=pageList.get(i).getRnum() %></td>
-					<td><%=pageList.get(i).getUserId() %></td>
-					<td><%=pageList.get(i).getName() %></td>
-					<td><%=pageList.get(i).getBirth() %></td>
-				</tr>
-				<% } %>
+				
+				
+				<c:forEach items="${pageList }" var="vo">
+					<tr onClick = "alertId('${vo.userId}')">
+						<td>${vo.rnum }</td>
+						<td>${vo.userId }</td>
+						<td>${vo.name }</td>
+						<td><fmt:formatDate value="${vo.birth}" pattern="yyyy-MM-dd"/></td>
+					</tr>
+				</c:forEach>
+				
+					
 			</table>
 		</div>
 		
@@ -117,10 +122,14 @@
        			 <span aria-hidden="true">&laquo;</span>
       			</a>
     		</li>
-			<%int count = (Integer)(request.getAttribute("pageCnt")); %>
-			<%for(int i=0; i < count; i++){ %>
-			<li><a href="/userPageList?page=<%=i+1 %>&pageSize=10"><%=i+1 %></a></li>
-			<%} %>
+			
+			
+			<c:forEach begin="0" end="${pageCnt-1 }" var="i">
+					<li><a href="/userPageList?page=${i+1 }&pageSize=10">${i+1 }</a></li>
+			</c:forEach>
+			
+			
+			
 			 <li>
       		<a href="#" aria-label="Next">
         		<span aria-hidden="true">&raquo;</span>

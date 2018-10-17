@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 		// 3. session에 사용자 정보등록(as-is : 임의의 userVo 등록 
 		//						   to-be : db에서 조회한 userVo 등록)
 		if(userVo != null && userVo.getPass().equals(userPw)){
-			req.getSession().setAttribute("userVo", userVo);
+			req.getSession().setAttribute("S_USER", userVo);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("main.jsp");
 			rd.forward(req, resp);
@@ -97,7 +97,7 @@ public class LoginServlet extends HttpServlet {
 			userVo.setBirth(new Date());
 			
 			HttpSession session = req.getSession();
-			session.setAttribute("userVo", userVo);
+			session.setAttribute("S_USER", userVo);
 			
 			// 2). main.jsp
 			// body 영역에
