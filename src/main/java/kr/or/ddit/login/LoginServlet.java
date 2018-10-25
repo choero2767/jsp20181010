@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.encrypt.sha.KISA_SHA256;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserServiceInf;
@@ -74,7 +75,9 @@ public class LoginServlet extends HttpServlet {
 		
 		// 3. session에 사용자 정보등록(as-is : 임의의 userVo 등록 
 		//						   to-be : db에서 조회한 userVo 등록)
-		if(userVo != null && userVo.getPass().equals(userPw)){
+		String encryptPass = KISA_SHA256.encrypt(userPw);
+		//if(userVo != null && userVo.getPass().equals(userPw)){
+			if(userVo != null && userVo.getPass().equals(encryptPass)){
 			req.getSession().setAttribute("S_USER", userVo);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("main.jsp");
@@ -86,6 +89,7 @@ public class LoginServlet extends HttpServlet {
 		/*
 		// 3-1. : main.jsp 이동
 		if(USERID.equals(userId) && USERPW.equals(userPw)){
+		
 			// redirect 방식(URL주소가 변경)
 //			resp.sendRedirect("main.jsp?user_id="+userid+"&user_pw="+userpw);
 			
