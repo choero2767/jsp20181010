@@ -46,7 +46,7 @@
 		
 		rs = stmt.executeQuery(sql); 
 
-		out.write("")
+		out.write("<opsion")
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} catch (ClassNotFoundException e) {
