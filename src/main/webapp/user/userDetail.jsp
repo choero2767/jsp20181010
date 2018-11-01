@@ -52,7 +52,8 @@
 									<img src="${userVo.profile }"/>
 								</c:when>
 								<c:otherwise>
-									<img src="./profile/noimage.png" width = "150" height="150"/>
+<!-- 									<img src="./profile/noimage.png" width = "150" height="150"/> -->
+									<img src="/fileDownload?userId=${userVo.userId}" />
 								</c:otherwise>
 							</c:choose>
 							

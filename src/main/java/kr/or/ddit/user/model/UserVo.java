@@ -2,7 +2,10 @@ package kr.or.ddit.user.model;
 
 import java.util.Date;
 
-public class UserVo {
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
+public class UserVo implements HttpSessionBindingListener{
 	private String userId;
 	private String name;
 	private String alias;
@@ -117,6 +120,17 @@ public class UserVo {
 				+ alias + ", birth=" + birth + ", pass=" + pass + ", add1="
 				+ add1 + ", add2=" + add2 + ", zipcd=" + zipcd + ", email="
 				+ email + ", tel=" + tel + ", profile=" + profile + "]";
+	}
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		System.out.println("userVo : " + event.getName());
+		
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		
 	}
 
 	

@@ -3,6 +3,7 @@ package kr.or.ddit.login;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +29,15 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		String newParameter = req.getParameter("newParameter");
+		System.out.println("newParameter : " + newParameter);
+		
+		//Map<String, String[]> reqMap = req.getParameterMap();
+		//reqMap.put("newParameter", new String[] {"newValue"});
+		
+		
+		
 		// 1. 사용자 아이디와 비밀번호를 request객체에서 받아온다
 		// 2. db에서 조회해온 아이디, 비밀번호를 체크를 한다.
 		// 3-1. 일치할 경우 main.jsp로 이동
